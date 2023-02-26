@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,9 +22,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
-
-
 Route::post('/login/process', [UserController::class, 'process']);
 
 Route::middleware(['middleware' => 'admin'])->group(function () {
@@ -31,6 +29,12 @@ Route::middleware(['middleware' => 'admin'])->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('admin_dashboard');
         Route::get('/logout', 'logout')->name('logout');
+    });
+
+    Route::controller(CompanyController::class)->group(function () {
+        Route::get('/company', 'index');
+
+        Route::post('/company/store', 'store');
     });
 });
 
