@@ -46,7 +46,7 @@
               <hr class="dropdown-divider">
             </li>
             <li class="nav-item text-center">
-              <a class="dropdown-item" href="./php/logout.php">Logout</a>
+              <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
             </li>
           </ul>
         </div>

@@ -23,14 +23,20 @@ Auth::routes();
 
 
 
-Route::get('/schedule', [UserController::class, 'schedule']);
 
 Route::post('/login/process', [UserController::class, 'process']);
 
 Route::middleware(['middleware' => 'admin'])->group(function () {
-    Route::get('/dashboard', [UserController::class, 'index'])->name('admin_dashboard');
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/dashboard', 'index')->name('admin_dashboard');
+        Route::get('/logout', 'logout')->name('logout');
+    });
 });
 
-Route::middleware(['middleware' => 'auth'])->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['middleware' => 'user'])->group(function () {
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/schedule', 'schedule');
+    });
 });

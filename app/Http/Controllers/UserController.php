@@ -11,6 +11,11 @@ class UserController extends Controller
         return view('admin.dashboard');
     }
 
+    public function schedule()
+    {
+        return view('user.schedule');
+    }
+
     public function process(Request $request)
     {
         $validated = $request->validate([
@@ -27,10 +32,17 @@ class UserController extends Controller
             } else if (auth()->user()->role === 'user') {
                 $request->session()->regenerateToken();
 
-                return redirect('/home');
+                return redirect('/schedule');
             }
         } else {
             return back()->with('error', 'The user does not match in our records');
         }
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return redirect('/login');
     }
 }
