@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             [
                 'last_name' => 'admin',
                 'first_name' => 'admin',
+                'company' => 'Obanana Corp.',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('admin123'),
                 'role' => 'admin',
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
             [
                 'last_name' => 'Boado',
                 'first_name' => 'Schultz Henry',
+                'company' => 'Obanana Corp.',
                 'email' => 'schultzhenry.boado@obanana.com',
                 'password' => bcrypt('abc123'),
                 'role' => 'user',

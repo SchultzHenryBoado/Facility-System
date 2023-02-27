@@ -13,13 +13,13 @@
            <a href="/dashboard" class="nav-link text-light">Dashboard</a>
          </li>
          <li class="nav-item text-center">
-           <a href="#" class="nav-link text-light">Reservation</a>
+           <a href="/pending_reservation" class="nav-link text-light">Pending Reservation</a>
          </li>
          <li class="nav-item text-center">
-           <a href="#" class="nav-link text-light">Approved</a>
+           <a href="/approved" class="nav-link text-light">Approved</a>
          </li>
          <li class="nav-item text-center">
-           <a href="#" class="nav-link text-light">Cancellation</a>
+           <a href="/cancellation" class="nav-link text-light">Cancellation</a>
          </li>
          <li class="nav-item dropdown text-center">
            <a class="nav-link dropdown-toggle text-center text-light" href="#" data-bs-toggle="dropdown">
@@ -29,7 +29,7 @@
              <li><a class="dropdown-item" href="/register">Register a Users</a></li>
              <li><a class="dropdown-item" href="/company">Company</a></li>
              <li><a class="dropdown-item" href="/floor">Floor Master</a></li>
-             <li><a class="dropdown-item" href="/facility_type">Facility Type</a></li>
+             <li><a class="dropdown-item" href="/facility">Facility Type</a></li>
              <li><a class="dropdown-item" href="/facility_room_master">Facility Room Master</a></li>
            </ul>
          </li>
