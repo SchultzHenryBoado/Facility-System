@@ -21,18 +21,45 @@
           </tr>
         </thead>
         <tbody>
+          @foreach($approve as $rowApprove)
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ $rowApprove->created_date }}</td>
+            <td>{{ $rowApprove->rsvn_no }}</td>
+            <td>{{ $rowApprove->created_by }}</td>
+            <td>{{ $rowApprove->facility_type }}</td>
+            <td>{{ $rowApprove->date_from }}</td>
+            <td>{{ $rowApprove->date_to }}</td>
+            <td>{{ $rowApprove->time_from }}</td>
+            <td>{{ $rowApprove->time_to }}</td>
+            <td>{{ $rowApprove->status }}</td>
+            <td>
+              <div class="d-inline-block">
+                <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#rejectModal">
+                  <i class="fa-solid fa-thumbs-down"></i>
+                </button>
+
+                <form action="#" method="post">
+                  <div class="modal fade" id="rejectModal">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title fs-5">Are you sure you want to reject?</h5>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                          <button class="btn btn-success fw-bold" type="button" data-bs-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-danger fw-bold">Reject</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </td>
           </tr>
+          @endforeach
         </tbody>
       </table>
     </div>

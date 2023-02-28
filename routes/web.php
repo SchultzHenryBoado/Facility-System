@@ -4,9 +4,12 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\FacilityRoomMasterController;
 use App\Http\Controllers\FloorController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Whoops\Run;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,16 +72,29 @@ Route::middleware(['middleware' => 'admin'])->group(function () {
         Route::delete('/facility_room_master/{facility_room_master}', 'destroy');
     });
 
+    Route::controller(ReservationController::class)->group(function () {
+        Route::put('/pending_reservation/{reservation}', 'approveStatus');
+        Route::put('/pending_reservation/{reservation}', 'rejectStatus');
+    });
+
     Route::get('/pending_reservation', function () {
-        return view('admin.pending_reservation');
+
+        $data = Reservation::where('status', 'pending')->get();
+
+        return view('admin.pending_reservation', ['pending' => $data]);
     });
 
     Route::get('/approved', function () {
-        return view('admin.approved');
+        
+        $data = Reservation::where('status', 'approved')->get();
+        
+        return view('admin.approved', ['approve' => $data]);
     });
 
-    Route::get('/cancellation   ', function () {
-        return view('admin.cancellation');
+    Route::get('/cancellation', function () {
+        $data = Reservation::where('status', 'reject');
+        
+        return view('admin.cancellation', ['reject' => $data]);
     });
 
 });
@@ -87,6 +103,14 @@ Route::middleware(['middleware' => 'user'])->group(function () {
 
     Route::controller(UserController::class)->group(function () {
         Route::get('/schedule', 'schedule');
+    });
+
+    Route::controller(ReservationController::class)->group(function () {
+        Route::get('/reservation', 'index');
+
+        Route::post('/reservation/store', 'store');
+        Route::put('/reservation/{reservation}', 'update');
+        Route::delete('/reservation/{reservation}', 'destroy');
     });
 
 });
