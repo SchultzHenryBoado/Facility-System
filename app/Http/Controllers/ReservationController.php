@@ -20,7 +20,10 @@ class ReservationController extends Controller
         $dataFacility = Facility::all();
         $dataFacilityRoomMaster = FacilityRoomMaster::all();
 
-        $dataReservation = Reservation::where('users_id', auth()->user()->id)->get();
+        $dataReservation = Reservation::where([
+            ['users_id', auth()->user()->id],
+            ['status', 'PENDING']
+        ])->get();
 
         return view('user.reservation', ['currentDate' => $date, 'user' => $users, 'facility_type' => $dataFacility, 'reservation' => $dataReservation, 'facility_room_master' => $dataFacilityRoomMaster]);
     }

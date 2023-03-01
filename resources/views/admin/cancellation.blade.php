@@ -34,15 +34,22 @@
             <td>{{ $rowReject->status }}</td>
             <td>
               <div class="d-inline-block">
-                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#approveModal">
+                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#approveModal-{{ $rowReject->id }}">
                   <i class="fa-solid fa-thumbs-up"></i>
                 </button>
 
-                <form action="#" method="post">
-                  <div class="modal fade" id="approveModal">
+                <form action="/cancellation/{{ $rowReject->id }}" method="post">
+                  @csrf
+                  @method('put')
+                  <div class="modal fade" id="approveModal-{{ $rowReject->id }}">
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
-
+                        <div class="modal-header">
+                          <h5 class="modal-title fs-5">Are you sure you want to approve?</h5>
+                        </div>
+                        <div class="modal-footer">
+                          <button class="btn btn-success fw-bold" type="submit">Approve</button>
+                        </div>
                       </div>
                     </div>
                   </div>
