@@ -41,7 +41,9 @@
                 <form action="#" method="post">
                   <div class="modal fade" id="approveModal">
                     <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content"></div>
+                      <div class="modal-content">
+
+                      </div>
                     </div>
                   </div>
                 </form>
