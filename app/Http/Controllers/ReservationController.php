@@ -93,12 +93,26 @@ class ReservationController extends Controller
         return redirect('/approved');
     }
 
-    public function rejectStatus(Request $request, Reservation $reservation)    
+    public function approvedRejectStatus(Request $request, Reservation $reservation)    
     {
-        $reservation->update([
-            'status' => 'REJECT'
+        $validated = $request->validate([
+            'cancel_reasons' => 'required'
         ]);
 
-        return redirect('/cancellation');
+       $reservation->update([
+        'cancel_reasons' => $validated['cancel_reasons'],
+        'status' => 'REJECT'
+       ]);
+
+        return redirect('/cancellation');  
+    }
+
+    public function rejectApprovedStatus(Request $request, Reservation $reservation)    
+    {
+        $reservation->update([
+            'status' => 'APPROVED'
+        ]);
+
+        return redirect('/approved');
     }
 }

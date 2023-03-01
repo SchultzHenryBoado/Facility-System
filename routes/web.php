@@ -75,6 +75,10 @@ Route::middleware(['middleware' => 'admin'])->group(function () {
     Route::controller(ReservationController::class)->group(function () {
         Route::put('/pending_reservation/{reservation}', 'approveStatus');
         Route::put('/pending_reservation/{reservation}', 'rejectStatus');
+        
+        Route::put('/approved/{reservation}', 'approvedRejectStatus');
+        Route::put('/cancellation/{reservation}', 'rejectApprovedStatus');
+
     });
 
     Route::get('/pending_reservation', function () {
@@ -92,7 +96,7 @@ Route::middleware(['middleware' => 'admin'])->group(function () {
     });
 
     Route::get('/cancellation', function () {
-        $data = Reservation::where('status', 'reject');
+        $data = Reservation::where('status', 'reject')->get();
         
         return view('admin.cancellation', ['reject' => $data]);
     });

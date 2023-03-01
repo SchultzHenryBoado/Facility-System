@@ -21,18 +21,34 @@
           </tr>
         </thead>
         <tbody>
+          @foreach($reject as $rowReject)
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ $rowReject->created_date }}</td>
+            <td>{{ $rowReject->rsvn_no }}</td>
+            <td>{{ $rowReject->created_by }}</td>
+            <td>{{ $rowReject->facility_type }}</td>
+            <td>{{ $rowReject->date_from }}</td>
+            <td>{{ $rowReject->date_to }}</td>
+            <td>{{ $rowReject->time_from }}</td>
+            <td>{{ $rowReject->time_to }}</td>
+            <td>{{ $rowReject->status }}</td>
+            <td>
+              <div class="d-inline-block">
+                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#approveModal">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                </button>
+
+                <form action="#" method="post">
+                  <div class="modal fade" id="approveModal">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content"></div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </td>
           </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
