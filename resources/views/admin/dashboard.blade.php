@@ -12,7 +12,7 @@
             <h3 class="fw-bold text-center text-light">Total Reservation</h3>
           </div>
           <div class="card-body">
-            <p class="fs-1 fw-bold text-center"></p>
+            <p class="fs-1 fw-bold text-center">{{ $reservation }}</p>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
             </h3>
           </div>
           <div class="card-body">
-            <p class="fs-1 fw-bold text-center"></p>
+            <p class="fs-1 fw-bold text-center">{{ $forConfirmation->count() }}</p>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
             <h3 class="fw-bold text-light text-center">Total Confirmed</h3>
           </div>
           <div class="card-body">
-            <p class="fs-1 fw-bold text-center"></p>
+            <p class="fs-1 fw-bold text-center">{{ $totalConfirmed->count() }}</p>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
             <h3 class="fw-bold text-light text-center">Total Cancelled</h3>
           </div>
           <div class="card-body">
-            <p class="fs-1 fw-bold text-center"></p>
+            <p class="fs-1 fw-bold text-center">{{ $totalCancelled->count() }}</p>
           </div>
         </div>
       </div>
@@ -67,13 +67,15 @@
         </tr>
       </thead>
       <tbody>
+        @foreach($reserve as $rowReserve)
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{ $rowReserve->facility_number }}</td>
+          <td>{{ $rowReserve->time_from }}</td>
+          <td>{{ $rowReserve->time_to }}</td>
+          <td>{{ $rowReserve->created_by }}</td>
+          <td>{{ $rowReserve->company }}</td>
         </tr>
+        @endforeach
       </tbody>
     </table>
   </div>

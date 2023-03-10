@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -11,7 +12,22 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $dataReserve = Reservation::count();
+        $forConfirmation = Reservation::where('status', 'PENDING')->get();
+        $totalConfirmed = Reservation::where('status', 'APPROVED')->get();
+        $totalCancelled = Reservation::where('status', 'REJECT')->get();
+        $dataReservation = Reservation::where(
+            ['status', 'approved'],
+            ['date_to', now()->format('Y-m-d')]
+        );
+
+        return view('admin.dashboard', [
+            'reservation' => $dataReserve,
+            'forConfirmation' => $forConfirmation,
+            'totalConfirmed' => $totalConfirmed,
+            'totalCancelled' => $totalCancelled,
+            'reserve' => $dataReservation
+        ]);
     }
 
     public function schedule()
